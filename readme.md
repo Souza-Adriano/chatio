@@ -9,20 +9,20 @@ chatio objective of being a chat for customer service, managing a queue for cust
 ## server
 >- [x] create new accounts
 >- [ ] authentication
->- [] account manager
+>- [ ] account manager
 
 ## chat
->- [] chat
->- [] rooms
->- [] private messages
->- [] room queue
+>- [ ] chat
+>- [ ] rooms
+>- [ ] private messages
+>- [ ] room queue
 
 ## Client-lib
->- [] connection
+>- [ ] connection
 >- thinking
 
 ## Client WebApp
->- [] connection
+>- [ ] connection
 >- thinking
 
 <br>
