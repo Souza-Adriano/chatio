@@ -21,7 +21,6 @@ class Account {
 
             response.status(204).send();
         } catch (error) {
-            console.log(error)
             response.status(500).send('internal server error');
         }
     }
