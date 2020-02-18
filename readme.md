@@ -8,7 +8,7 @@ chatio objective of being a chat for customer service, managing a queue for cust
 
 ## server
 >- [x] create new accounts
->- [] authentication
+>- [ ] authentication
 >- [] account manager
 
 ## chat
