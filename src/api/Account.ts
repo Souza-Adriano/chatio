@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import AccountModel from '../models/Account';
 
 class Account {
-    router = Router();
+    public router = Router();
 
     constructor() {
         this.init();
