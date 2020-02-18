@@ -15,11 +15,13 @@ class Account {
 
     public create = async (request: Request, response: Response): Promise<void> => {
         try {
+
             const account = new AccountModel();
             await account.create(request.body);
 
             response.status(204).send();
         } catch (error) {
+            console.log(error)
             response.status(500).send('internal server error');
         }
     }

@@ -29,12 +29,12 @@ class Account extends AbstractModel {
         try {
             this.validator.isValidBody(body, this.body.create);
             this.validator.isEmail(body.email, `${body.email} is not a valid email.`);
-            this.validator.isEqual(body.password, body.confirmPassword, 'password and confirm passowrd not match');
-            this.validator.onLength(body.passowrd, {max: 50, min: 6}, 'password');
+            this.validator.isEqual(body.password, body.confirmPassword, 'password and confirm password not match');
+            this.validator.onLength(body.password, {max: 50, min: 6}, 'password');
             this.validator.onLength(body.name, {min: 3, max: 50}, 'name');
             this.validator.onLength(body.name, {min: 3, max: 50}, 'nickname');
 
-            const hash: string = await this.enigma.encrypt(body.passowrd);
+            const hash: string = await this.enigma.encrypt(body.password);
 
             return {
                 id: this.genID(),
