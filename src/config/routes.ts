@@ -1,2 +1,4 @@
 import Account from '../api/Account';
-export default [ new Account() ];
+import Authenticate from '../api/Authenticate';
+
+export default [ new Account(), new Authenticate() ];
