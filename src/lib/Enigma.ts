@@ -11,7 +11,7 @@ class Enigma {
         return await hash(data, await genSalt(this.salt));
     }
 
-    public async decrypt(data: string, hash: string): Promise<boolean> {
+    public async validate(data: string, hash: string): Promise<boolean> {
         return await compare(data, hash);
     }
 }
