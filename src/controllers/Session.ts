@@ -11,7 +11,7 @@ interface User {
     avatar: string;
 }
 
-interface UserSession {
+export interface UserSession {
     id: string;
     email: string;
     name: string;

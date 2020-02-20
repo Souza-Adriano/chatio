@@ -11,6 +11,7 @@ class Account {
     public init(): void {
         this.router.post('/signup', this.create);
         this.router.post('/account', this.create);
+        this.router.get('/account', this.list);
     }
 
     public create = async (request: Request, response: Response): Promise<void> => {
@@ -22,6 +23,15 @@ class Account {
             response.status(204).send();
         } catch (error) {
             response.status(500).send('internal server error');
+        }
+    }
+
+    public async list(request: Request, response: Response): Promise<void> {
+        try {
+            response.sendStatus(200);
+        } catch(error) {
+            console.log(error)
+            response.sendStatus(500);
         }
     }
 }

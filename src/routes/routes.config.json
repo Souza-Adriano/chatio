@@ -1,0 +1,7 @@
+{
+    "unauthenticate": [
+        "/signup",
+        "/account",
+        "/signin"
+    ]
+}
