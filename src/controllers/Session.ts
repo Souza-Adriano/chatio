@@ -107,7 +107,7 @@ class Session {
             if (!dataString) { throw new Error('session not found'); }
             const data: DataSession  = JSON.parse(dataString);
 
-            const session: UserSession = await this.validate({exp: data.exp, key, token: data.token, user: data})
+            const session: UserSession = await this.validate({exp: data.exp, key, token: data.token, user: data});
             await this.extend(session, this.key(key));
 
             return session;
