@@ -1,5 +1,4 @@
 import { Socket, Server} from 'socket.io';
-import { SocketCustomer, SocketUser } from '../middlewares/Authentication';
 
 export interface CommonSession {
     id: string;
