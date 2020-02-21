@@ -52,7 +52,6 @@ const autenticateRoutes = (route: string): boolean => {
     return !unauthenticate.includes(route);
 };
 
-
 const Authentication = async (request: Request, response: Response, next: NextFunction): Promise<any> => {
     try {
         if (autenticateRoutes(request.path) === false) { return next(); }
