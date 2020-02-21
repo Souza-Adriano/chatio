@@ -3,19 +3,19 @@ class Validator {
 
     public isEmail(value: string, msg: string): void {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) === false) {
-            throw new Error(msg);
+            throw new RangeError(msg);
         }
     }
 
     public isEqual <VALUE>(valueA: VALUE, valueB: VALUE, msg: string): void {
         if (valueA !== valueB) {
-            throw new Error(msg);
+            throw new RangeError(msg);
         }
     }
 
     public isNotEqual <VALUE>(valueA: VALUE, valueB: VALUE, msg: string): void {
         if (valueA === valueB) {
-            throw new Error(msg);
+            throw new RangeError(msg);
         }
     }
 
@@ -24,11 +24,11 @@ class Validator {
         if (!length.max) { length.max = 255; }
 
         if (value.length > length.max) {
-            throw new Error(`${propertie} max length is ${ length.max - 1 } and you inputed ${ value.length }`);
+            throw new RangeError(`${propertie} max length is ${ length.max - 1 } and you inputed ${ value.length }`);
         }
 
         if (value.length < length.min) {
-            throw new Error(`${propertie} min length is ${ length.min } and you inputed ${ value.length }`);
+            throw new RangeError(`${propertie} min length is ${ length.min } and you inputed ${ value.length }`);
         }
     }
 
@@ -39,7 +39,7 @@ class Validator {
         const isNotExpected: string[] = bodyProperties.filter((item: string) => expect.indexOf(item) < 0 );
 
         if (isExpected.length > 0 || isNotExpected.length > 0) {
-            throw new Error(`missing parameters: ${isExpected.join(', ')} \n unnecessary parameters: ${isNotExpected.join(', ')}`);
+            throw new RangeError(`missing parameters: ${isExpected.join(', ')} \n unnecessary parameters: ${isNotExpected.join(', ')}`);
         }
     }
 }
