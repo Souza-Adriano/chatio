@@ -9,3 +9,5 @@ abstract class AbstractSocket {
         this.server = server;
     }
 }
+
+export default AbstractSocket;
