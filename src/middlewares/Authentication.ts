@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { ResponseError } from '../controllers/ErrorHandler';
 import Session, { UserSession } from '../controllers/Session';
 import { unauthenticate } from '../routes/routes.config.json';
-import { Socket } from 'socket.io';
 import Validator from '../lib/Validator';
 
 interface AuthHeader {

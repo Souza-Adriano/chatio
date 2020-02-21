@@ -29,8 +29,6 @@ class App {
         routes.forEach((route) => this.app.use('/', route.router));
     }
 
-
-
     private sockets(socketEvents: any[]): void {
         this.SocketServer.on('connection', (socket) => {
             socketEvents.forEach((SocketEvent) => new SocketEvent(socket));
