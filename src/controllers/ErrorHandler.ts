@@ -18,7 +18,7 @@ export class ResponseError {
         return {
             message: this.message,
             status: this.status,
-        }
+        };
     }
 
     private getStack(error: Error) {

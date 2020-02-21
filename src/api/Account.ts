@@ -29,8 +29,8 @@ class Account {
     public async list(request: Request, response: Response): Promise<void> {
         try {
             response.sendStatus(200);
-        } catch(error) {
-            console.log(error)
+        } catch (error) {
+            console.log(error);
             response.sendStatus(500);
         }
     }
