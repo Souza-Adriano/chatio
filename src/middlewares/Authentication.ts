@@ -76,9 +76,9 @@ interface SocketSession {
     type: string;
 }
 
-interface SocketUser extends SocketSession, UserSession {}
+export interface SocketUser extends SocketSession, UserSession {}
 
-interface SocketCustomer extends SocketSession {
+export interface SocketCustomer extends SocketSession {
     id: string;
     name: string;
     email: string;
