@@ -3,6 +3,7 @@ import { Application } from 'express';
 import { createServer, Server } from 'http';
 import * as IO from 'socket.io';
 import Env from './env';
+import { SocketAuthentication } from '../middlewares/Authentication'
 
 class App {
     public app: Application;
@@ -30,8 +31,18 @@ class App {
     }
 
     private sockets(socketEvents: any[]): void {
-        this.SocketServer.on('connection', (socket) => {
-            socketEvents.forEach((SocketEvent) => new SocketEvent(socket));
+        this.SocketServer.on('connection', async (socket) => {
+            try {
+                const data = await SocketAuthentication(socket.handshake);
+                data.type === 'user'
+                    ? socket.join(data.email)
+                    : socket.join('lobby');
+
+                socketEvents.forEach((SocketEvent) => new SocketEvent(socket));
+            } catch (error) {
+                socket.error(error);
+                socket.disconnect(true);
+            }
         });
     }
 
