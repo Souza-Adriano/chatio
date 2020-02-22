@@ -3,7 +3,7 @@ import { Application } from 'express';
 import { createServer, Server } from 'http';
 import * as IO from 'socket.io';
 import Env from './env';
-import { SocketAuthentication } from '../middlewares/Authentication'
+import { SocketAuthentication } from '../middlewares/Authentication';
 
 class App {
     public app: Application;
