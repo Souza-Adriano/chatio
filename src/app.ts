@@ -7,6 +7,6 @@ const App = new app({
     middlewares,
     routes,
     sockets,
-})
+});
 
 App.start();

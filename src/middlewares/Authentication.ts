@@ -3,7 +3,7 @@ import { ResponseError } from '../controllers/ErrorHandler';
 import Session, { UserSession } from '../controllers/Session';
 import { unauthenticate } from '../routes/routes.config.json';
 import Validator from '../lib/Validator';
-
+import LogHandler from '../controllers/LogHandler';
 interface AuthHeader {
     token: string;
     prefix: string;
@@ -73,6 +73,7 @@ const Authentication = async (request: Request, response: Response, next: NextFu
 };
 
 interface SocketSession {
+    socket: string;
     type: string;
 }
 
@@ -88,7 +89,6 @@ export interface SocketCustomer extends SocketSession {
 const validateQuery = (query: any) => {
     try {
         const validator = new Validator();
-        validator.isValidBody(query, ['id', 'name', 'email', 'info']);
         validator.isEmail(query.email, 'is not a valid email');
         validator.onLength(query.name, { min: 3, max: 100 }, 'name');
     } catch (error) {
@@ -100,27 +100,29 @@ const validateQuery = (query: any) => {
     }
 };
 
-const getSocketQuery = (query: any): SocketCustomer => {
+const getSocketQuery = (query: any, id: string): SocketCustomer => {
     if (!query) { throw new Error('query not found.'); }
     validateQuery(query);
-
-    return { type: 'customer', ...query };
+    LogHandler.success(`customer ${query.email} connected`);
+    return { type: 'customer', socket: id, ...query };
 };
 
-export const SocketAuthentication = async (socket: any): Promise<SocketUser | SocketCustomer>  => {
+export const SocketAuthentication = async (socket: any, id: string): Promise<SocketUser | SocketCustomer>  => {
     try {
-        if (!socket.headers.authorization) {
-            return getSocketQuery(socket.query);
+        if (!socket.query.authorization) {
+            return getSocketQuery(socket.query, id);
         }
 
-        const authorization: AuthHeader = getAuthorizationHeader(socket.headers.authorization);
+        const authorization: AuthHeader = getAuthorizationHeader(socket.query.authorization);
         isValidPrefix(authorization.prefix);
 
         const user: UserSession = await isValidToken(authorization.token);
         const session: SocketUser = {
             type: 'user',
+            socket: id,
             ...user,
         };
+        LogHandler.success(`user: ${session.email} connected`);
         return session;
 
     } catch (error) {
